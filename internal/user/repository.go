@@ -1,4 +1,4 @@
-package auth
+package user
 
 import (
 	"github.com/jackc/pgx/v5/pgxpool"
