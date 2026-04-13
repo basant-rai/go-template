@@ -6,12 +6,11 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-template/internal/bootstrap"
 	"github.com/jackc/pgx/v5/pgxpool"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-
-	v1 "github.com/supertruck/wallet/api/v1"
-	"github.com/supertruck/wallet/internal/bootstrap"
+	v1 "github.com/swaggo/gin-swagger/example/multiple/api/v1"
 )
 
 func RegisterRoutes(r *gin.Engine, h bootstrap.Handlers, jwtSecret string, db *pgxpool.Pool) {
@@ -33,9 +32,6 @@ func RegisterRoutes(r *gin.Engine, h bootstrap.Handlers, jwtSecret string, db *p
 			"service": "supertruck-wallet",
 		})
 	})
-
-	//* ** WEBHOOKS ***
-	r.POST("/webhooks/stripe", h.Webhook.HandleWebhook)
 
 	//* ** SWAGGER ***
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
